@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mmall.domain.User;
 import com.mmall.service.UserService;
 
-@RestController(value="/user")
+@RestController
 public class UserController {
 	
 	@Autowired
@@ -23,7 +23,7 @@ public class UserController {
 	 * @param username
 	 * @return
 	 */
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "user/{username}", method = RequestMethod.GET)
 	public User findUserByUserName(@PathVariable(value="username", required = true) String username){
 		return userService.findUserByUserName(username);
 	}
@@ -32,7 +32,7 @@ public class UserController {
 	 * 分页查询用户
 	 * @return
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "user/list", method = RequestMethod.GET)
 	public List<User> selectUserList(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "pagesize", defaultValue = "10") int pagesize){
 		return userService.selectUserList(page,pagesize);
 	}
