@@ -3,6 +3,10 @@ package com.mmall.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mmall.util.serializer.JsonDateSerializer;
+
 /**
  * 用户实体类
  * 
@@ -21,8 +25,11 @@ public class User implements Serializable{
 	private String question;
 	private String answer;
 	private Long role;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date creatTime;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
+	
 	public Long getId() {
 		return id;
 	}

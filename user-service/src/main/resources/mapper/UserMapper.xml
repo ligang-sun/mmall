@@ -17,11 +17,11 @@
 	
 	<!-- 根据用户名称查询用户对象 -->
 	<select id="findUserByUserName" parameterType="java.lang.String" resultMap="BaseUserMapper">
-	   select * from user where username = #{username}
+	   select * from mmall_user where username = #{username}
 	</select>
 	
 	<!-- 查询所有的用户  -->
 	<select id="selectUserList" resultMap="BaseUserMapper">
-	   select * from user
+	   select * from mmall_user
 	</select>
 </mapper>
