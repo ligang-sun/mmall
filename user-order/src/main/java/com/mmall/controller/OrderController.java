@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.mmall.domain.Order;
+import com.mmall.domain.User;
 import com.mmall.service.OrderService;
 
 /**
@@ -25,6 +27,21 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	
+	/**
+	 * 查询订单中的用户信息
+	 */
+	@RequestMapping(value = "/user/{username}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public User findUserByUserId(@PathVariable(name="username") String username){
+		
+		return restTemplate.getForObject("http://USER-SERVICE/user/{username}", User.class, username);
+		
+	}
+	
 
 	/**
 	 * 分页查询所有的订单
