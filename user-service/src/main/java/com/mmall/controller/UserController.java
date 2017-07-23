@@ -125,13 +125,8 @@ public class UserController {
 	 * @param username
 	 * @return
 	 */
-<<<<<<< HEAD
-	@RequestMapping(value = "user/{username}", method = RequestMethod.GET)
-	public User findUserByUserName(@PathVariable(value="username", required = true) String username){
-=======
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public User findUserByUserName(@PathVariable(name = "username", required = true) String username) {
->>>>>>> 9cc1e5fea141e8d73e719bad1821c1d547a06bc2
 		return userService.findUserByUserName(username);
 	}
 
@@ -140,16 +135,10 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-<<<<<<< HEAD
-	@RequestMapping(value = "user/list", method = RequestMethod.GET)
-	public List<User> selectUserList(@RequestParam(name = "page", defaultValue = "1") int page,@RequestParam(name = "pagesize", defaultValue = "10") int pagesize){
-		return userService.selectUserList(page,pagesize);
-=======
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public List<User> selectUserList(@RequestParam(name = "page", defaultValue = "1") int page,
 	        @RequestParam(name = "pagesize", defaultValue = "10") int pagesize) {
 		return userService.selectUserList(page, pagesize);
->>>>>>> 9cc1e5fea141e8d73e719bad1821c1d547a06bc2
 	}
 
 }

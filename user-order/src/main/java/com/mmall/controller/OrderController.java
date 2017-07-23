@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import com.mmall.domain.Order;
 import com.mmall.domain.User;
 import com.mmall.service.OrderService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 /**
  * 订单Controller
@@ -35,12 +37,34 @@ public class OrderController {
 	/**
 	 * 查询订单中的用户信息
 	 */
+	@HystrixCommand(fallbackMethod = "findUserByUserIdFallback", 
+			commandProperties={
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
+			@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
+			@HystrixProperty(name ="execution.isolation.strategy", value = "SEMAPHORE")
+			
+	},		threadPoolProperties = {
+			@HystrixProperty(name = "coreSize", value = "1"),
+			@HystrixProperty(name = "maxQueueSize", value = "10")
+	}
+	)
 	@RequestMapping(value = "/user/{username}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public User findUserByUserId(@PathVariable(name="username") String username){
 		
 		return restTemplate.getForObject("http://USER-SERVICE/user/{username}", User.class, username);
 		
 	}
+	
+	public User findUserByUserIdFallback(@PathVariable(name="username") String username){
+		User user = new User();
+		user.setId(1L);
+		user.setUsername("默认用户");
+		
+		return user;
+		
+	}
+	
+	
 	
 
 	/**

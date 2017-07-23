@@ -22,6 +22,12 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8020/eureka/
     registry-fetch-interval-seconds: 5
+    
+   
+    
+#turbine:
+#  appConfig: USER-SERVICE,USER-ORDER
+#  clusterNameExpression: "'default'"
   
   
   
