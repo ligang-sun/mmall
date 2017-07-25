@@ -58,6 +58,7 @@
         <module>eureka-server</module>
         <module>hystrix-dashboard</module>
         <module>hystrix-turbine</module>
+        <module>gateway-zuul</module>
     </modules>
 
 

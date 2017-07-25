@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.turbine.stream.EnableTurbineStream;
 
 @SpringBootApplication
 @EnableTurbineStream
-@EnableEurekaClient
+//@EnableEurekaClient
 //@EnableTurbine
 public class HystrixTurbineApplication {
 

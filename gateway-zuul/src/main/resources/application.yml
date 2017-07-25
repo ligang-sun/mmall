@@ -1,15 +1,8 @@
 server:
-  port: 8040
-  
+  port: 8050
 spring:
   application:
-    name: hystrix-turbine
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-
+    name: gateway-zuul 
 eureka:
   instance:
     hostname: localhost
@@ -22,11 +15,27 @@ eureka:
       defaultZone: http://localhost:8020/eureka/
     registry-fetch-interval-seconds: 5
     
-   
+zuul:
+  routes:
+    user-service:  #不用服务名称
+      path: /user/**
+      strip-prefix: false
+    user-order:
+      path: /order/**
+      strip-prefix: false
+
+
+
+#zuul:
+#  routes:
+#    user-service: /user/**
+#    user-order: /order/**
+
+# 日志
+#logging:
+#  level:
+#    com.netflix: DEBUG
+
+
+
     
-#turbine:
-#  appConfig: USER-SERVICE,USER-ORDER
-#  clusterNameExpression: "'default'"
-  
-  
-  
