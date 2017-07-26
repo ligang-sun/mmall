@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +32,10 @@ public class UserController {
 
 	@Autowired
 	private OrderFeignClient orderFeignClient;
+	
+	
+	
+	
 
 	/**
 	 * 获取用户的订单--Feign通过服务名调用order-service 

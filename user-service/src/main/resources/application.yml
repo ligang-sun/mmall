@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: user-service
+  profiles: 
+    active: dev
+  datasource: ## 数据源配置
+    url: jdbc:mysql://localhost:3306/mmall?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:  ## 消息中间件收集数据
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  zipkin:
+    base-url: http://localhost:8070
+  sleuth:
+    samler:
+      percentage: 1.0
+
+
+    
+server: #端口
+  port: 8000
+
+
+mybatis:  ## 数据源配置
+  typeAliasesPackage: com.mmall.domain
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+
+# 开启feign对hystrix的支持  默认为false  
+feign:
+  hystrix:
+    enabled: true
+
+
+
+
+##Eureka Client配置
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    lease-renewal-interval-in-seconds: 5  #心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10 #发呆时间，即服务续约到期时间（缺省为90s）
+  client: #去哪里注册，eureka服务地址
+    serviceUrl:
+      defaultZone: http://localhost:8020/eureka/
+    registry-fetch-interval-seconds: 5
+    
+## bus/refresh 去掉验证
+management:
+  security:
+    enabled: false
+    
+    
+    
+  

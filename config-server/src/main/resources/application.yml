@@ -1,0 +1,47 @@
+server:
+  port: 8060
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config: 
+      server:
+        git:
+          uri: https://github.com/ligang-sun/config-file
+          username: 2634628944@qq.com
+          password: Slg661209
+    bus: ## 请求/bus/trace 可以跟踪总线
+      trace:
+        enabled: true
+  rabbitmq:  ## 消息中间件收集数据
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+          
+##Eureka 配置
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    lease-renewal-interval-in-seconds: 5  #心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10 #发呆时间，即服务续约到期时间（缺省为90s）
+  client: #去哪里注册，eureka服务地址
+    serviceUrl:
+      defaultZone: http://localhost:8020/eureka/
+    registry-fetch-interval-seconds: 5
+
+## bus/refresh 刷新配置时,去掉验证
+management:
+  security:
+    enabled: false
+    
+    
+security:
+  basic:
+    enabled: true
+  user:
+    name: sunligang
+    password: sunligang

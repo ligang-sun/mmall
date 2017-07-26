@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    config:
+      uri: http://sunligang:sunligang@localhost:8060/  ## 指定spring cloud config uri
+      profile: prod
+      label: master
+      
+   
+
+
+
+
+
+
+
+
+
+

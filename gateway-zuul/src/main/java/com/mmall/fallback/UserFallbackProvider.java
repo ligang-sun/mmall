@@ -13,6 +13,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
 /**
+ * 给具体某个服务写个fallback类
  * 用户微服务撤回
  * 
  * @author ligang.sun

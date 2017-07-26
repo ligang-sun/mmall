@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    config:
+      uri: http://sunligang:sunligang@localhost:8060/
+      profile: prod
+      label: master
+   
+
+
+
+
+
+
+
+
+
+
